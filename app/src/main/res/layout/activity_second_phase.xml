@@ -63,9 +63,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Round : "
         android:id="@+id/round"
-        android:layout_above="@+id/selectBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="45dp" />
+        android:layout_below="@+id/fourthCB"
+        android:layout_alignLeft="@+id/fourthCB"
+        android:layout_alignStart="@+id/fourthCB"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="45dp" />
 
+    <Chronometer
+        android:id="@+id/chronometer1"
+        android:textSize="30dp"
+        android:textColor="#4169E1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/thirdCB"
+        android:layout_alignRight="@+id/thirdCB"
+        android:layout_alignEnd="@+id/thirdCB"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
