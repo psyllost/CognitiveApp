@@ -1,12 +1,14 @@
 package com.example.ioanna.cognitiveapp;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,15 +20,18 @@ public class SecondPhase extends ActionBarActivity {
     CheckBox firstCheckBox, secCheckBox, thirdCheckBox, fourthCheckBox;
     Button selectButton;
     TextView roundView;
+    Chronometer mChronometer;
     static int round = 1;
     int correctAnswers = 0;
     int wrongAnswers = 0;
     List<CheckBox> checkBoxList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_phase);
+
         checkBoxList = new ArrayList<>();
         firstCheckBox = (CheckBox) findViewById(R.id.firstCB);
         secCheckBox = (CheckBox) findViewById(R.id.secCB);
@@ -39,11 +44,15 @@ public class SecondPhase extends ActionBarActivity {
         checkBoxList.add(thirdCheckBox);
         checkBoxList.add(fourthCheckBox);
         roundView=setRoundView(roundView);
+        mChronometer = (Chronometer) findViewById(R.id.chronometer1);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mChronometer.start();
+        checkChronometer();
         selectButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 randomShape();
@@ -57,6 +66,23 @@ public class SecondPhase extends ActionBarActivity {
         randomShape();
     }
 
+    /**
+     * Method to check the chronometer and after 30 seconds have passed it kills the activity
+     */
+    private void checkChronometer(){
+        mChronometer.setBase(SystemClock.elapsedRealtime());
+        mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long myElapsedMillis = SystemClock.elapsedRealtime() - mChronometer.getBase();
+                if(myElapsedMillis > 30000){
+                    mChronometer.stop();
+                    SecondPhase.this.finish();
+
+                }
+            }
+        });
+    }
     private TextView setRoundView(TextView roundView1){
         roundView1.setText("Round : " + Integer.toString(round));
         return roundView1;
