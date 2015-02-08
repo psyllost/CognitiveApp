@@ -1,0 +1,157 @@
+package com.example.ioanna.cognitiveapp;
+
+import android.content.Intent;
+import android.os.CountDownTimer;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+
+public class MainActivity extends ActionBarActivity {
+
+    Button timerButton;
+    TextView timer;
+    ImageView imageView;
+    ImageView imageView2;
+    ImageView imageView3;
+    ImageView imageView4;
+    ProgressBar progressBar;
+
+    // public int  Next = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        timerButton = (Button) findViewById(R.id.timerButton);
+
+        setButtonOnClickListeners();
+
+        timer = (TextView) findViewById(R.id.timer);
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
+        imageView4 = (ImageView) findViewById(R.id.imageView4);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        //if(Next == 1){
+        //Intent intent = new Intent(this, NextActivity.class);
+        //this.startActivity(intent);
+        //}
+
+
+    }
+
+    private void setButtonOnClickListeners() {
+        timerButton.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * Called when a view has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
+            @Override
+            public void onClick(View v) {
+
+                int rnd;
+                Random rand=new Random();
+                int[] randNo = new int[4];
+                ArrayList numbers = new ArrayList();
+                for (int k=0 ; k<4 ;k++)
+                {
+                    rnd = rand.nextInt(16) + 1;
+                    if(k==0)
+                    {
+                        randNo[0] = rnd;
+                        numbers.add(randNo[0]);
+                    }
+                    else
+                    {
+                        while(numbers.contains(new Integer(rnd)))
+                        {
+                            rnd = rand.nextInt(16) + 1;
+                        }
+                        randNo[k] = rnd;
+                        numbers.add(randNo[k]);
+                    }
+                }
+
+                //Random rand = new Random();
+                //int rndInt = rand.nextInt(16) + 1; // n = the number of images, that start at idx 1
+                //String imgName = "img" + rndInt;
+                //int id = getResources().getIdentifier(imgName, "drawable", getPackageName());
+
+                String imgName = "img" + randNo[0];
+                int id = getResources().getIdentifier(imgName, "drawable", getPackageName());
+
+                imageView.setImageResource(id);
+
+                //Random rand2 = new Random();
+                //int rndInt2 = rand2.nextInt(16) + 1; // n = the number of images, that start at idx 1
+                //String imgName2 = "img" + rndInt2;
+                //int id2 = getResources().getIdentifier(imgName2, "drawable", getPackageName());
+
+                String imgName2 = "img" + randNo[1];
+                int id2 = getResources().getIdentifier(imgName2, "drawable", getPackageName());
+
+                imageView2.setImageResource(id2);
+
+                //Random rand3 = new Random();
+                //int rndInt3 = rand3.nextInt(16) + 1; // n = the number of images, that start at idx 1
+                //String imgName3 = "img" + rndInt3;
+                //int id3 = getResources().getIdentifier(imgName3, "drawable", getPackageName());
+
+                String imgName3 = "img" + randNo[2];
+                int id3 = getResources().getIdentifier(imgName3, "drawable", getPackageName());
+
+                imageView3.setImageResource(id3);
+
+                //Random rand4 = new Random();
+                //int rndInt4 = rand4.nextInt(16) + 1; // n = the number of images, that start at idx 1
+                //String imgName4 = "img" + rndInt4;
+                //int id4 = getResources().getIdentifier(imgName4, "drawable", getPackageName());
+
+                String imgName4 = "img" + randNo[3];
+                int id4 = getResources().getIdentifier(imgName4, "drawable", getPackageName());
+
+                imageView4.setImageResource(id4);
+
+
+                CountDownTimer Count = new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        int seconds = (int) ((millisUntilFinished / 1000));
+
+                        timer.setText(seconds + "  seconds ");
+
+                        progressBar.setProgress((int) Math.round(millisUntilFinished / 1000.0));
+
+
+                    }
+
+                    public void onFinish() {
+                        //jump to next activity using intent
+                        // Next = 1;
+                        Intent intent = new Intent(MainActivity.this, SecondPhase.class);
+                        MainActivity.this.startActivity(intent);
+                        System.exit(0);
+
+                    }
+                };
+
+                Count.start();
+            }
+        });
+
+    }
