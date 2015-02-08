@@ -1,6 +1,7 @@
 package com.example.ioanna.cognitiveapp;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -29,6 +30,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_main);
         mRandomShapes = new RandomShapes();
         timerButton = (Button) findViewById(R.id.timerButton);
@@ -67,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
                     mRandomShapes.getRandomShape(iv, randNo[i]);
                     i++;
                 }
-
+                timerButton.setEnabled(false);
                 CountDownTimer Count = new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         int seconds = (int) ((millisUntilFinished / 1000));

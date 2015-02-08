@@ -1,6 +1,7 @@
 package com.example.ioanna.cognitiveapp;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +32,7 @@ public class SecondPhase extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_second_phase);
 
         checkBoxList = new ArrayList<>();
