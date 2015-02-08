@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Random;
 public class SecondPhase extends ActionBarActivity {
     CheckBox firstCheckBox, secCheckBox, thirdCheckBox, fourthCheckBox;
     Button selectButton;
+    TextView roundView;
+    static int round = 1;
     int correctAnswers = 0;
     int wrongAnswers = 0;
     List<CheckBox> checkBoxList;
@@ -26,10 +29,16 @@ public class SecondPhase extends ActionBarActivity {
         setContentView(R.layout.activity_second_phase);
         checkBoxList = new ArrayList<>();
         firstCheckBox = (CheckBox) findViewById(R.id.firstCB);
-
+        secCheckBox = (CheckBox) findViewById(R.id.secCB);
+        thirdCheckBox = (CheckBox) findViewById(R.id.thirdCB);
+        fourthCheckBox = (CheckBox) findViewById(R.id.fourthCB);
         selectButton = (Button) findViewById(R.id.selectBtn);
-
+        roundView = (TextView) findViewById(R.id.round);
         checkBoxList.add(firstCheckBox);
+        checkBoxList.add(secCheckBox);
+        checkBoxList.add(thirdCheckBox);
+        checkBoxList.add(fourthCheckBox);
+        roundView=setRoundView(roundView);
     }
 
     @Override
@@ -38,12 +47,35 @@ public class SecondPhase extends ActionBarActivity {
         selectButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 randomShape();
+                uncheck();
                 score(correctAnswers - wrongAnswers);
+                round++;
+                roundView = setRoundView(roundView);
+
             }
         });
         randomShape();
     }
 
+    private TextView setRoundView(TextView roundView1){
+        roundView1.setText("Round : " + Integer.toString(round));
+        return roundView1;
+    }
+
+    /**
+     * Method to uncheck the checkboxes when refreshed
+     */
+    private void uncheck() {
+        for (CheckBox cb : checkBoxList) {
+            if (cb.isChecked()) {
+                cb.setChecked(false);
+            }
+        }
+    }
+
+    /**
+     * Method to generate random shapes for each round of the game
+     */
     private void randomShape() {
         for (CheckBox cb : checkBoxList) {
             Random x = new Random();
@@ -102,6 +134,12 @@ public class SecondPhase extends ActionBarActivity {
         }
     }
 
+    /**
+     * Method to keep track of the score during rounds
+     *
+     * @param answers correct-wrong answers
+     * @return score after taking into consideration other parameters (time maybe etc)
+     */
     private int score(int answers) {
         int score = 0;
 
