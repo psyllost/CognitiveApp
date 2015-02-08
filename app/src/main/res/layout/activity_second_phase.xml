@@ -10,12 +10,12 @@
 
     <Button
         android:id="@+id/selectBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:minWidth="200px"
-        android:text="Select" />
+        android:textSize="35sp"
+        android:text="Next Round !!!" />
 
     <CheckBox
         android:layout_width="150dp"
@@ -26,6 +26,46 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@drawable/blue_rect" />
+    <CheckBox
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/secCB"
+        android:button="@drawable/customdrawablecheckbox"
+
+        android:background="@drawable/blue_rect"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <CheckBox
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/thirdCB"
+        android:button="@drawable/customdrawablecheckbox"
+        android:background="@drawable/blue_rect"
+        android:layout_alignTop="@+id/fourthCB"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/fourthCB"
+        android:button="@drawable/customdrawablecheckbox"
+        android:background="@drawable/blue_rect"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Round : "
+        android:id="@+id/round"
+        android:layout_above="@+id/selectBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp" />
 
 
 </RelativeLayout>
