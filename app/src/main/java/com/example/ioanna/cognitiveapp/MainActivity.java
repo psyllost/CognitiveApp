@@ -26,8 +26,6 @@ public class MainActivity extends ActionBarActivity {
     RandomShapes mRandomShapes;
     List<ImageView> imageViewList;
 
-    // public int  Next = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +47,6 @@ public class MainActivity extends ActionBarActivity {
         imageViewList.add(imageView4);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        //if(Next == 1){
-        //Intent intent = new Intent(this, NextActivity.class);
-        //this.startActivity(intent);
-        //}
-
 
     }
 
@@ -74,29 +67,6 @@ public class MainActivity extends ActionBarActivity {
                     mRandomShapes.getRandomShape(iv, randNo[i]);
                     i++;
                 }
-//                String imgName = "img" + randNo[0];
-//                int id = getResources().getIdentifier(imgName, "drawable", getPackageName());
-//
-//                imageView.setImageResource(id);
-//
-//
-//                String imgName2 = "img" + randNo[1];
-//                int id2 = getResources().getIdentifier(imgName2, "drawable", getPackageName());
-//
-//                imageView2.setImageResource(id2);
-//
-//
-//                String imgName3 = "img" + randNo[2];
-//                int id3 = getResources().getIdentifier(imgName3, "drawable", getPackageName());
-//
-//                imageView3.setImageResource(id3);
-//
-//
-//                String imgName4 = "img" + randNo[3];
-//                int id4 = getResources().getIdentifier(imgName4, "drawable", getPackageName());
-//
-//                imageView4.setImageResource(id4);
-
 
                 CountDownTimer Count = new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
