@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -69,6 +70,10 @@ public class MainActivity extends ActionBarActivity {
                     mRandomShapes.getRandomShape(iv, randNo[i]);
                     i++;
                 }
+
+                CheckAnswers.getInstance().setImageViewList(imageViewList);
+                Log.i("MainActivity imageview list", Integer.toString(imageViewList.size()));
+
                 timerButton.setEnabled(false);
                 CountDownTimer Count = new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
@@ -85,8 +90,9 @@ public class MainActivity extends ActionBarActivity {
                         //jump to next activity using intent
                         // Next = 1;
                         Intent intent = new Intent(MainActivity.this, SecondPhase.class);
-                        MainActivity.this.startActivity(intent);
-                        System.exit(0);
+                        startActivity(intent);
+                        MainActivity.this.finish();
+                        //System.exit(0);
 
                     }
                 };

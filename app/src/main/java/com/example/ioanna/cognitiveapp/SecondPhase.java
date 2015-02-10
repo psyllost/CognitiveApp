@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +21,14 @@ import java.util.List;
 public class SecondPhase extends ActionBarActivity {
     CheckBox firstCheckBox, secCheckBox, thirdCheckBox, fourthCheckBox;
     Button selectButton;
-    TextView roundView;
+    TextView roundView,scoreView;
     Chronometer mChronometer;
     static int round = 1;
     int correctAnswers = 0;
-    int wrongAnswers = 0;
+    int wrongAnswers=0;
     List<CheckBox> checkBoxList;
     RandomShapes mRandomShapes;
+    List<CheckBox> checkedCB;
 
 
     @Override
@@ -34,8 +36,8 @@ public class SecondPhase extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_second_phase);
-
         checkBoxList = new ArrayList<>();
+        checkedCB=new ArrayList<>();
         mRandomShapes = new RandomShapes();
         firstCheckBox = (CheckBox) findViewById(R.id.firstCB);
         secCheckBox = (CheckBox) findViewById(R.id.secCB);
@@ -43,13 +45,14 @@ public class SecondPhase extends ActionBarActivity {
         fourthCheckBox = (CheckBox) findViewById(R.id.fourthCB);
         selectButton = (Button) findViewById(R.id.selectBtn);
         roundView = (TextView) findViewById(R.id.round);
+        scoreView = (TextView) findViewById(R.id.score);
+
         checkBoxList.add(firstCheckBox);
         checkBoxList.add(secCheckBox);
         checkBoxList.add(thirdCheckBox);
         checkBoxList.add(fourthCheckBox);
         roundView = setRoundView(roundView);
         mChronometer = (Chronometer) findViewById(R.id.chronometer1);
-
         getRandomShapes();
     }
 
@@ -60,21 +63,23 @@ public class SecondPhase extends ActionBarActivity {
         checkChronometer();
         selectButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                CheckAnswers.getInstance().setCheckBoxList(uncheck());
+
+                correctAnswers += CheckAnswers.getInstance().correctAnswers();
+
                 getRandomShapes();
-                uncheck();
-                score(correctAnswers - wrongAnswers);
                 round++;
                 roundView = setRoundView(roundView);
-
+                scoreView = getScoreTV(scoreView,correctAnswers);
+                Log.i("Score", Integer.toString(correctAnswers));
             }
         });
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        startActivity(new Intent(SecondPhase.this,MainActivity.class));
+        startActivity(new Intent(SecondPhase.this, MainActivity.class));
     }
 
     /**
@@ -101,14 +106,18 @@ public class SecondPhase extends ActionBarActivity {
     }
 
     /**
-     * Method to uncheck the checkboxes when refreshed
+     * Method to uncheck the checkboxes when refreshed and add the checked checkboxes to a list to be compared with the correct answers
      */
-    private void uncheck() {
+    private List<CheckBox> uncheck() {
+        checkedCB.clear();
         for (CheckBox cb : checkBoxList) {
             if (cb.isChecked()) {
+                checkedCB.add(cb);
                 cb.setChecked(false);
             }
         }
+
+        return checkedCB;
     }
 
     private void getRandomShapes() {
@@ -119,18 +128,12 @@ public class SecondPhase extends ActionBarActivity {
             mRandomShapes.getRandomShapeCheckbox(cv, randNo[i]);
             i++;
         }
+
     }
 
-    /**
-     * Method to keep track of the score during rounds
-     *
-     * @param answers correct-wrong answers
-     * @return score after taking into consideration other parameters (time maybe etc)
-     */
-    private int score(int answers) {
-        int score = 0;
-
-        return score;
+    private TextView getScoreTV(TextView tv,int score) {
+        tv.setText("Score : " + Integer.toString(score));
+        return tv;
     }
 
     @Override
