@@ -32,6 +32,7 @@ public class SecondPhase extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        round=1;
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_second_phase);
@@ -52,6 +53,7 @@ public class SecondPhase extends ActionBarActivity {
         roundView = setRoundView(roundView);
         mChronometer = (Chronometer) findViewById(R.id.chronometer1);
         getRandomShapes();
+        getScoreTV(scoreView,correctAnswers);
     }
 
     @Override
