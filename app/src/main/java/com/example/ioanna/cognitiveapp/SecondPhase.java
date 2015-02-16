@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +45,6 @@ public class SecondPhase extends ActionBarActivity {
         selectButton = (Button) findViewById(R.id.selectBtn);
         roundView = (TextView) findViewById(R.id.round);
         scoreView = (TextView) findViewById(R.id.score);
-
         checkBoxList.add(firstCheckBox);
         checkBoxList.add(secCheckBox);
         checkBoxList.add(thirdCheckBox);
@@ -64,9 +62,7 @@ public class SecondPhase extends ActionBarActivity {
         selectButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 CheckAnswers.getInstance().setCheckBoxList(uncheck());
-
                 correctAnswers += CheckAnswers.getInstance().correctAnswers();
-
                 getRandomShapes();
                 round++;
                 roundView = setRoundView(roundView);
@@ -79,7 +75,7 @@ public class SecondPhase extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        startActivity(new Intent(SecondPhase.this, MainActivity.class));
+        startActivity(new Intent(SecondPhase.this, Feedback.class));
     }
 
     /**

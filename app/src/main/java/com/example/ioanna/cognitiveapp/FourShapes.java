@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class FourShapes extends ActionBarActivity {
 
     Button timerButton;
     TextView timer;
@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_four_shapes);
         mRandomShapes = new RandomShapes();
         timerButton = (Button) findViewById(R.id.timerButton);
 
@@ -89,9 +89,9 @@ public class MainActivity extends ActionBarActivity {
                     public void onFinish() {
                         //jump to next activity using intent
                         // Next = 1;
-                        Intent intent = new Intent(MainActivity.this, SecondPhase.class);
+                        Intent intent = new Intent(FourShapes.this, SecondPhase.class);
                         startActivity(intent);
-                        MainActivity.this.finish();
+                        FourShapes.this.finish();
                         //System.exit(0);
 
                     }
