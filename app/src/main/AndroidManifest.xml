@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".HomePage"
-            android:label="@string/title_activity_home_page" >
+            android:label="@string/title_activity_home_page"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +43,15 @@
             android:name=".FetchAddressIntentService"
             android:exported="false" />
 
-
+        <activity
+            android:name=".PieChartActivity"
+            android:label="@string/title_activity_pie_chart"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".PlotWithZoomActivity"
+            android:label="@string/title_activity_plot_with_zoom" >
+        </activity>
     </application>
 
 </manifest>

@@ -34,5 +34,14 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="Graphs" />
+    <Button
+        android:id="@+id/pie_chart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/graphs"
+        android:layout_centerVertical="true"
+        android:text="Pie Chart" />
 
 </RelativeLayout>

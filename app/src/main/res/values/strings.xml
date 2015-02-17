@@ -17,5 +17,7 @@
     <string name="service_not_available">Sorry, the service is not available</string>
     <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
     <string name="title_activity_feedback">Feedback</string>
+    <string name="title_activity_pie_chart">PieChartActivity</string>
+    <string name="title_activity_plot_with_zoom">PlotWithZoomActivity</string>
 
 </resources>

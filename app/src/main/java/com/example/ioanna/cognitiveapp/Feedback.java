@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidplot.pie.PieChart;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -100,6 +101,13 @@ public class Feedback extends ActionBarActivity implements
     TextView Timestamp;
     String myDate;
 
+
+    Button graphsButton;
+    Button pieChartButton;
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +137,24 @@ public class Feedback extends ActionBarActivity implements
         mAddressRequested = true;
         //updateUIWidgets();
         Timestamp.setText(myDate);
+
+
+
+        graphsButton = (Button) findViewById(R.id.graphs);
+        graphsButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Feedback.this, PlotWithZoomActivity.class));
+            }
+        });
+        pieChartButton = (Button) findViewById(R.id.pie_chart);
+        pieChartButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Feedback.this, PieChartActivity.class));
+            }
+        });
+
+
+
     }
 
     /**
