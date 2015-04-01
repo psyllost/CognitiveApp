@@ -5,11 +5,13 @@ public class ItemData {
 
     private String title;
     private int imageUrl;
+    private String content;
 
     public ItemData(String title,int imageUrl){
 
         this.title = title;
         this.imageUrl = imageUrl;
+
     }
 
     public String getTitle() {

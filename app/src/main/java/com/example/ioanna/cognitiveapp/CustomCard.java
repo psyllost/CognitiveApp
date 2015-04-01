@@ -1,9 +1,10 @@
 package com.example.ioanna.cognitiveapp;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,10 +14,11 @@ public class CustomCard extends Card {
 
     protected TextView mTitle;
     protected TextView mSecondaryTitle;
-    protected RatingBar mRatingBar;
+    protected ProgressBar mProgressBar;
 
     /**
      * Constructor with a custom inner layout
+     *
      * @param context
      */
     public CustomCard(Context context) {
@@ -24,7 +26,6 @@ public class CustomCard extends Card {
     }
 
     /**
-     *
      * @param context
      * @param innerLayout
      */
@@ -36,7 +37,7 @@ public class CustomCard extends Card {
     /**
      * Init
      */
-    private void init(){
+    private void init() {
 
         //No Header
 
@@ -53,21 +54,22 @@ public class CustomCard extends Card {
     public void setupInnerViewElements(ViewGroup parent, View view) {
 
         //Retrieve elements
-        mTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_title);
-        mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
-        mRatingBar = (RatingBar) parent.findViewById(R.id.carddemo_myapps_main_inner_ratingBar);
-
-
-        if (mTitle!=null)
-            mTitle.setText("oH YEAH");
-
-        if (mSecondaryTitle!=null)
-            mSecondaryTitle.setText("NAILED IT");
-
-        if (mRatingBar!=null)
-            mRatingBar.setNumStars(5);
-        mRatingBar.setMax(5);
-        mRatingBar.setRating(4.7f);
-
+//        mTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_title);
+//        mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
+//        mProgressBar = (ProgressBar) parent.findViewById(R.id.progressBarOverall);
+//
+//
+//        if (mTitle != null)
+//            mTitle.setText("oH YEAH");
+//
+//        if (mSecondaryTitle != null)
+//            mSecondaryTitle.setText("NAILED IT");
+//
+//        if (mProgressBar != null) {
+////            mProgressBar.setScaleX(3);
+////            mProgressBar.setScaleY(3);
+//            mProgressBar.setMax(5);
+//            mProgressBar.setProgress(3);
+//        }
     }
 }

@@ -50,7 +50,6 @@ public class FourShapes extends ActionBarActivity {
         imageViewList.add(imageView4);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-
     }
 
     private void setButtonOnClickListeners() {

@@ -26,45 +26,53 @@ public class HomePage extends ActionBarActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_home_page);
         startActivity(new Intent(HomePage.this, FourShapes.class));
-        ItemData itemsData[] = {new ItemData("Help", R.drawable.orange_rect),
-                new ItemData("Delete", R.drawable.green_star),
-                new ItemData("Cloud", R.drawable.green_triangle),
-                new ItemData("Favorite", R.drawable.pink_star),
-                new ItemData("Like", R.drawable.pink_star),
-                new ItemData("Rating", R.drawable.pink_circle)};
 
-        cards = new ArrayList<Card>();
-
-        for (ItemData itemData : itemsData) {
-            // Create a Card
-            Card card = new CustomCard(this);
-            // Create a CardHeader
-            CardHeader header = new CardHeader(this);
-            // Add Header to card
-            header.setTitle(itemData.getTitle());
-            card.setTitle(itemData.getTitle());
-            card.addCardHeader(header);
-
-            CardThumbnail thumb = new CardThumbnail(this);
-            thumb.setDrawableResource(itemData.getImageUrl());
-            card.addCardThumbnail(thumb);
-            card.setSwipeable(true);
-            cards.add(card);
-
-            card.setOnSwipeListener(new Card.OnSwipeListener() {
-                @Override
-                public void onSwipe(Card card) {
-                    cards.remove(card);
-                }
-            });
-        }
-
-        CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(this, cards);
-
-        CardListView listView = (CardListView) this.findViewById(R.id.myList);
-        if (listView != null) {
-            listView.setAdapter(mCardArrayAdapter);
-        }
+//        // TODO Make a list with getters and setters and draw the list to fill the cards
+//
+//        ItemData itemsData[] = {new ItemData("Help", R.drawable.orange_rect),
+//                new ItemData("Delete", R.drawable.green_star),
+//                new ItemData("Cloud", R.drawable.green_triangle),
+//                new ItemData("Favorite", R.drawable.pink_star),
+//                new ItemData("Like", R.drawable.pink_star),
+//                new ItemData("Rating", R.drawable.pink_circle)};
+//
+//
+//
+//
+//        cards = new ArrayList<Card>();
+//
+//        for (ItemData itemData : itemsData
+//            ) {
+//            // Create a Card
+//            Card card = new CustomCard(this);
+//
+//            // Create a CardHeader
+//            CardHeader header = new CardHeader(this);
+//            // Add Header to card
+//            header.setTitle(itemData.getTitle());
+//            card.setTitle(itemData.getTitle());
+//            card.addCardHeader(header);
+//
+//            CardThumbnail thumb = new CardThumbnail(this);
+//            thumb.setDrawableResource(itemData.getImageUrl());
+//            card.addCardThumbnail(thumb);
+//            card.setSwipeable(true);
+//            cards.add(card);
+//
+//            card.setOnSwipeListener(new Card.OnSwipeListener() {
+//                @Override
+//                public void onSwipe(Card card) {
+//                    cards.remove(card);
+//                }
+//            });
+//        }
+//
+//        CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(this, cards);
+//
+//        CardListView listView = (CardListView) this.findViewById(R.id.myList);
+//        if (listView != null) {
+//            listView.setAdapter(mCardArrayAdapter);
+//        }
     }
 }
 
